@@ -1,0 +1,39 @@
+/* htmlとbodyにheight100%を指定すると背景が画面いっぱい */
+html {
+	height: 100%;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	font-size: 14px;
+	background-image: url("../img/bg.jpg");
+	background-size: cover;
+	color: white;
+	padding-top: 20px;
+}
+
+.qPanel {
+	background-color: rgba(0, 0, 0, 0.7);
+	margin: 20px;
+	padding:12px;
+}
+
+/*文字を出現させるために必要*/
+.textSplitLoad {
+    display: none;
+}
+.split {
+    visibility: hidden;
+}
+/*文字を出現終了*/
+
+.countPanel {
+	margin: 20px;
+}
+
+#cd-text {
+	font-size: 24px;
+	margin-left: 8px;
+}
