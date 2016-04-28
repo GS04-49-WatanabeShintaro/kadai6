@@ -32,6 +32,7 @@ echo date("Y年m月d日 H:i:s");
  </head>
  <body>
 
+
 <h1>
 あなたの名前は<?php echo $name; ?>でしょ？
 メールが<?php echo $mail; ?>とか、

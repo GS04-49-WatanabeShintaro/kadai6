@@ -73,9 +73,17 @@ countDown();
 
 <?php
 
+//ちょっとテスト
+$array = array(1, 2, 3, 4, 4, 4);
+$num = count($array);
+echo $num;
+$sub = array_keys($array, 4);
+$kosu = count($sub);
+echo $kosu;
+
 ?>
 
-<div id="q1" class="qPanel">
+<div id="q01" class="qPanel">
   <h4><b>問題</b></h4>
   <p class="split">エビフライは尻尾まで食べますか？</p>
 </div>
@@ -88,6 +96,35 @@ countDown();
       </div>
   </div>
 </div>
+
+<div class="yesnoPanel">
+<div class="container">
+  <div class="row">
+    <form method="post" action="result.php">
+      <input type="hidden" name="qNumber" value="q01">
+      <button class="yesBtn col-xs-offset-2 col-xs-2 col-sm-offset-2 col-sm-2 col-md-offset-2 col-md-2 col-lg-offset-2 col-lg-2" name="answer" value="yes" type="submit">
+        Yes
+      </button>
+    </form>
+    <form method="post" action="result.php">
+      <input type="hidden" name="qNumber" value="q01">
+      <button class="noBtn col-xs-offset-4 col-xs-2 col-sm-offset-4 col-sm-2 col-md-offset-4 col-md-2 col-lg-offset-4 col-lg-2" name="answer" value="no" type="submit">
+        No
+      </button>
+    </form>
+  </div>
+</div>
+</div>
+
+<!-- <form method="post" action="result.php" style="color:black">
+  <p>お名前:<input type="text" name="name" size="20"></p>
+  <p>tesutp:<input type="text" name="test" size="20"></p>
+  <button type="submit" name="test" value="yes">ボタンだよ</button>
+  <p><input type="submit" value="送信"></p>
+</form> -->
+
+
+
 
 </body>
 </html>
