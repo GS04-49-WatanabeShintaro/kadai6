@@ -18,6 +18,23 @@
     <link rel="shortcut icon" href="img/favicon.ico">
   </head>
 <body>
+
+<?php
+  $fp = @fopen("data/question.csv", "r");  //ファイルを開く
+  flock($fp, LOCK_SH);                      //ファイルロック
+  while ($array = fgetcsv( $fp )) { //カンマ区切りのcsvをarrayに入れて配列化
+        $num = count($array); //配列の数を調べてnumに代入。全回答数。
+        echo $num;
+        $qID = rand(0, $num-2);
+        echo $qID;
+        $qText = $array[$qID];
+        echo $qText;
+  }
+
+  flock($fp, LOCK_UN);            //ロック解除
+  fclose($fp);                          //ファイルを閉じる
+?>
+
   <script>
   $(document).ready(function(){
 
@@ -66,27 +83,25 @@ function countDown(){
 countDown();
 //カウントダウン終了
 
+//jsonから読み込むとsplitがイマイチ反応しない。
+// $.getJSON("question.json", function(question){
+//   console.log(question.length); //jsonに書いた問題数
+//   var rand = Math.floor( Math.random() * question.length ) ; //問題数からランダムで1問選ぶ
+//   console.log(rand); //問題番号
+//   console.log(question[rand]); //問題
+//   document.getElementById("問題文にID指定").innerHTML=question[rand];
+//  });
+
 
 
   });
   </script>
 
-<?php
-
-//ちょっとテスト
-$array = array(1, 2, 3, 4, 4, 4);
-$num = count($array);
-echo $num;
-$sub = array_keys($array, 4);
-$kosu = count($sub);
-echo $kosu;
-
-?>
-
-<div id="q01" class="qPanel">
+<div id="questionPanel" class="qPanel">
   <h4><b>問題</b></h4>
-  <p class="split">エビフライは尻尾まで食べますか？</p>
+  <p class="split"><?=$qText ?></p>
 </div>
+
 
 <div class="countPanel">
   <div id="cd-text">00:20</div>
@@ -101,13 +116,13 @@ echo $kosu;
 <div class="container">
   <div class="row">
     <form method="post" action="result.php">
-      <input type="hidden" name="qNumber" value="q01">
+      <input type="hidden" name="qNumber" value="<?=$qID ?>">
       <button class="yesBtn col-xs-offset-2 col-xs-2 col-sm-offset-2 col-sm-2 col-md-offset-2 col-md-2 col-lg-offset-2 col-lg-2" name="answer" value="yes" type="submit">
         Yes
       </button>
     </form>
     <form method="post" action="result.php">
-      <input type="hidden" name="qNumber" value="q01">
+      <input type="hidden" name="qNumber" value="<?=$qID ?>">
       <button class="noBtn col-xs-offset-4 col-xs-2 col-sm-offset-4 col-sm-2 col-md-offset-4 col-md-2 col-lg-offset-4 col-lg-2" name="answer" value="no" type="submit">
         No
       </button>

@@ -74,3 +74,33 @@ body {
 	box-shadow: 0px 0px 24px white;
 	transition-duration: 0.3s;
 }
+
+/* resurtページ */
+#drowareaContainer {
+	margin: 50px;
+	position:relative;
+}
+
+#yesPosition {
+	position: absolute;
+	top:15%;
+	font-size: 24px;
+}
+
+#noPosition {
+	position: absolute;
+	top:15%;
+	right:0px;
+	font-size: 24px;
+}
+
+
+/* createページ */
+#createPage {
+	margin:8px 16px;
+	color:black;
+}
+
+#createPage textarea{
+	max-width: 100%;
+}
