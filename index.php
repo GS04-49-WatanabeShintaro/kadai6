@@ -23,11 +23,27 @@
   $fp = @fopen("data/question.csv", "r");  //ファイルを開く
   flock($fp, LOCK_SH);                      //ファイルロック
   while ($array = fgetcsv( $fp )) { //カンマ区切りのcsvをarrayに入れて配列化
-        $num = count($array); //配列の数を調べてnumに代入。全回答数。
+        $num = count($array); //配列の数を調べてnumに代入。全問題数。
         echo $num;
-        $qID = rand(0, $num-2);
+        $qID = rand(0, $num-2);//今回の問題をランダムに選択する。問題番号。
         echo $qID;
-        $qText = $array[$qID];
+
+        echo //jsでlocalstorageにプレイした問題番号を保存。
+          "<script>
+            if(localStorage.getItem('playedNumber') == ''){
+              var playedNumber = new Array();
+              playedNumber.push($qID);
+              localStorage.setItem('playedNumber', JSON.stringify(playedNumber));
+              console.log(playedNumber);
+            } else {
+              var playedNumber =  JSON.parse(localStorage.getItem('playedNumber'));
+              playedNumber.push($qID);
+              localStorage.setItem('playedNumber', JSON.stringify(playedNumber));
+              console.log(playedNumber);
+            }
+          </script>;";
+
+        $qText = $array[$qID];//今回の問題のテキスト
         echo $qText;
   }
 
@@ -82,17 +98,6 @@ function countDown(){
 };
 countDown();
 //カウントダウン終了
-
-//jsonから読み込むとsplitがイマイチ反応しない。
-// $.getJSON("question.json", function(question){
-//   console.log(question.length); //jsonに書いた問題数
-//   var rand = Math.floor( Math.random() * question.length ) ; //問題数からランダムで1問選ぶ
-//   console.log(rand); //問題番号
-//   console.log(question[rand]); //問題
-//   document.getElementById("問題文にID指定").innerHTML=question[rand];
-//  });
-
-
 
   });
   </script>
