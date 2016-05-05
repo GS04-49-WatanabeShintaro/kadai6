@@ -25,20 +25,31 @@
 //フォームのvalueを変数に入れる
 $userQuestion = $_POST["userQuestion"];
 
-//ファイルに書き込む文字列にする
-$str = $userQuestion.",";
+if(strpos($userQuestion,',') !== FALSE){
+  echo "問題文にカンマがあると登録できません。戻って作成しなおしてください。";
+} else {
+  echo "問題を追加しました！";
+  //ファイルに書き込む文字列にする
+  $str = $userQuestion.",";
 
-//ファイルに書き込んでいく
-$file = fopen("data/question.csv","a"); //決まり事。書き込む前にファイルオープン。
-flock($file, LOCK_EX); //書き込み時には他の人の書き込み待ちする。書き込み中はロック。
-fputs($file,$str); //書き込み
-flock($file, LOCK_UN); //ロックを解除
-fclose($file); //ファイルを閉じる
+  //ファイルに書き込んでいく
+  $file = fopen("data/question.csv","a"); //決まり事。書き込む前にファイルオープン。
+  flock($file, LOCK_EX); //書き込み時には他の人の書き込み待ちする。書き込み中はロック。
+  fputs($file,$str); //書き込み
+  flock($file, LOCK_UN); //ロックを解除
+  fclose($file); //ファイルを閉じる
+}
+
+
+
 
 ?>
 
-問題を追加しました。
+<br><br><br><br>
 
+<a href="create.php">問題作成ページに戻る</a>
+<br><br>
+<a href="index.php">解答ページにいく</a>
 
 
 

@@ -28,7 +28,7 @@
         $qID = rand(0, $num-2);//今回の問題をランダムに選択する。問題番号。
         echo $qID;
 
-        echo //jsでlocalstorageにプレイした問題番号を保存。
+        echo //jsでlocalstorageにプレイした問題番号を保存
           "<script>
             if(localStorage.getItem('playedNumber') == ''){
               var playedNumber = new Array();
@@ -42,6 +42,8 @@
               console.log(playedNumber);
             }
           </script>;";
+          //jsで読み込んだlocalstorageでプレイ済み問題に当たらないようにしたかったけど、
+          //phpの処理が先なせいで配列を渡せないっぽいので諦めました。
 
         $qText = $array[$qID];//今回の問題のテキスト
         echo $qText;

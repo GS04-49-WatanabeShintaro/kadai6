@@ -134,6 +134,7 @@ setTimeout(yesDelay, 2500);
 });
 </script>
 
+<a href ="index.php">次の問題に進む</a>
 
 </body>
 </html>
